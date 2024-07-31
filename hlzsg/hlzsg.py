@@ -8,7 +8,9 @@ hezsg_url='https://club.iyogames.cn/?env=web&gameVersion=2144-CN-ZS&lang=zh-CN'
 hezsg_login_url='https://club.iyogames.cn/pages/user/login/index?env=web&gameVersion=2144-CN-ZS&lang=en-US'
 
 print('当前目录: ',os.getcwd())
-
+print('../stealth.min.js文件是否存在:',os.path.isfile('../stealth.min.js'))
+print('./stealth.min.js文件绝对路径:',os.path.abspath('./stealth.min.js'))
+print('当前目录列表: ',os.path.dirname(os.getcwd()))
 # 同步API （初学者建议先使用同步API）
 with sync_playwright() as playwright:
 
