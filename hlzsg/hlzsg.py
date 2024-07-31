@@ -1,6 +1,6 @@
 
-import re,sys,random,time,os
-from playwright.sync_api import sync_playwright, expect
+import sys,time
+from playwright.sync_api import sync_playwright
 
 
 hezsg_url='https://club.iyogames.cn/?env=web&gameVersion=2144-CN-ZS&lang=zh-CN'
