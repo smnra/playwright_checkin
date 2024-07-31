@@ -7,10 +7,8 @@ hezsg_url='https://club.iyogames.cn/?env=web&gameVersion=2144-CN-ZS&lang=zh-CN'
 
 hezsg_login_url='https://club.iyogames.cn/pages/user/login/index?env=web&gameVersion=2144-CN-ZS&lang=en-US'
 
-print('当前目录: ',os.getcwd())
-print('../stealth.min.js文件是否存在:',os.path.isfile('../stealth.min.js'))
-print('./stealth.min.js文件绝对路径:',os.path.abspath('./stealth.min.js'))
-print('当前目录列表: ',os.path.dirname(os.getcwd()))
+
+
 # 同步API （初学者建议先使用同步API）
 with sync_playwright() as playwright:
 
@@ -29,10 +27,13 @@ with sync_playwright() as playwright:
     if sys.platform.startswith('linux'):
         # linux 环境下的chrome浏览器路径
         executable_path = r'/usr/bin/google-chrome-stable'
+        # js文件路径
+        jsFile = r'/home/runner/work/playwright_checkin/playwright_checkin/stealth.min.js'
     elif sys.platform.startswith('win32'):
         # windows 环境下的chrome浏览器路径
         executable_path = r'E:\\data\\GoogleChromePortable\\App\\Chrome-bin\\chrome.exe'
-
+        # js文件路径
+        jsFile = '../stealth.min.js'
     #  插件路径
     path_to_extension = r"E:\\data\\GoogleChromePortable\\Data\\profile\\Default\\Extensions\\keeneegnimhijbnhhcmjpfmmbfceakdi\\1.0.3_0"
 
@@ -85,8 +86,11 @@ with sync_playwright() as playwright:
 
     page = browser.pages[0]   # 使用第一个标签
 
+
+    print('当前路径:',os.getcwd())
+
     # 利用stealth.min.js隐藏selenium特征
-    page.add_init_script(path="../stealth.min.js")
+    page.add_init_script(path=jsFile)
 
 
     #  先访问后台页面 ,然后再打开前台页面  前台页面才能正常登录,否则会提示登录失败
