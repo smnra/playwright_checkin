@@ -31,10 +31,13 @@ jobs:
           pip install --upgrade pip
           pip install playwright==1.45.1
 
-#      - name: 下载 chroemium
-#        run: |
-#          source venv/bin/activate
-#          python3 GetYoutubeUrl.py
+      - name: 下载 chroemium
+        run: |
+          sudo wget http://www.linuxidc.com/files/repo/google-chrome.list -P /etc/apt/sources.list.d/
+          wget -q -O - https://dl.google.com/linux/linux_signing_key.pub  | sudo apt-key add -
+          sudo apt-get update
+          sudo apt-get install google-chrome-stable
+          echo /usr/bin/google-chrome-stable
 
       - name: 运行主程序
         env:
