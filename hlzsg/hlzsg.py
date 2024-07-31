@@ -52,7 +52,7 @@ with sync_playwright() as playwright:
             chromium_sandbox=False,
             user_data_dir=r'../userData',  # 指定浏览器用户数据目录，用于保存cookie等信息，默认是None
             executable_path=executable_path,  # 指定本机google客户端exe的路径
-            headless=False,  # 是否隐藏浏览器界面，默认是False
+            headless=True,  # 是否隐藏浏览器界面，默认是False
             ignore_default_args=["--enable-automation"],
             viewport={"width": 1920, "height": 1080},  # 指定浏览器窗口大小，默认是1920x1080
             channel="chrome",
