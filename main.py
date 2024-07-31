@@ -22,10 +22,9 @@ with sync_playwright() as playwright:
     }
 
     # 设置浏览器路径
-
     if sys.platform.startswith('linux'):
         # linux 环境下的chrome浏览器路径
-        executable_path = r'/home/runner/.cache/ms-playwright/chromium-1117/chrome-linux/chrome'
+        executable_path = r'/usr/bin/google-chrome-stable'
     elif sys.platform.startswith('win32'):
         # windows 环境下的chrome浏览器路径
         executable_path = r'E:\\data\\GoogleChromePortable\\App\\Chrome-bin\\chrome.exe'
