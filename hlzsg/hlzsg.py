@@ -57,6 +57,7 @@ with sync_playwright() as playwright:
             user_data_dir=r'../userData',  # 指定浏览器用户数据目录，用于保存cookie等信息，默认是None
             executable_path=executable_path,  # 指定本机google客户端exe的路径
             headless=True,  # 是否隐藏浏览器界面，默认是False
+            # headless=False,  # 是否隐藏浏览器界面，默认是False
             ignore_default_args=["--enable-automation"],
             viewport={"width": 1920, "height": 1080},  # 指定浏览器窗口大小，默认是1920x1080
             channel="chrome",
@@ -113,6 +114,8 @@ with sync_playwright() as playwright:
         page.wait_for_selector('xpath=//uni-view[text()="每日签到"]')
         checkinLink = page.query_selector('xpath=//uni-view[text()="每日签到"]')
         checkinLink.click(timeout=2000)        # 点击签到后跳转到 签到页面 有 ifream
+
+        # 等待 iframe 加载完成
         page.wait_for_selector('xpath=//iframe')
         iframe = page.frame_locator('xpath=//iframe')
 
@@ -121,7 +124,13 @@ with sync_playwright() as playwright:
         if checkinButton.text_content()=='已签到':
             print('\n今日已签到,无需再签到!')
         else:
-            checkinButton.click(timeout=2000) #点击签到
+            time.sleep(5)
+            # 滚动直到按钮出现
+            while not checkinButton.is_visible():
+                page.evaluate('window.scrollBy(0, 100)')
+                time.sleep(0.5)
+
+            checkinButton.click(timeout=5000) #点击签到
             print('\n签到成功!')
 
         page.wait_for_selector('xpath=//iframe')
