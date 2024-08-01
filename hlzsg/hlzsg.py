@@ -113,7 +113,7 @@ with sync_playwright() as playwright:
         # 选择文本为“每日签到”的标签
         page.wait_for_selector('xpath=//uni-view[text()="每日签到"]')
         checkinLink = page.query_selector('xpath=//uni-view[text()="每日签到"]')
-        checkinLink.click(timeout=2000)        # 点击签到后跳转到 签到页面 有 ifream
+        checkinLink.click(timeout=2000,force=True)        # 点击签到后跳转到 签到页面 有 ifream
 
         # 等待 iframe 加载完成
         page.wait_for_selector('xpath=//iframe')
@@ -125,12 +125,7 @@ with sync_playwright() as playwright:
             print('\n今日已签到,无需再签到!')
         else:
             time.sleep(5)
-            # 滚动直到按钮出现
-            while not checkinButton.is_visible():
-                page.evaluate('window.scrollBy(0, 100)')
-                time.sleep(0.5)
-
-            checkinButton.click(timeout=5000) #点击签到
+            checkinButton.click(timeout=2000,force=True) #点击签到
             print('\n签到成功!')
 
         page.wait_for_selector('xpath=//iframe')
