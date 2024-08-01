@@ -5,7 +5,7 @@ from playwright.sync_api import sync_playwright
 
 hezsg_url='https://club.iyogames.cn/?env=web&gameVersion=2144-CN-ZS&lang=zh-CN'
 
-hezsg_login_url='https://club.iyogames.cn/pages/user/login/index?env=web&gameVersion=2144-CN-ZS&lang=en-US'
+hezsg_login_url='https://club.iyogames.cn/pages/user/login/index?env=web&gameVersion=2144-CN-ZS&lang=zh-CN'
 
 
 
@@ -117,7 +117,7 @@ with sync_playwright() as playwright:
         iframe = page.frame_locator('xpath=//iframe')
 
         # 点击签到按钮
-        checkinButton = iframe.locator('xpath=//*[@class="signin-btn signin-btn-disabled hydrated"]')
+        checkinButton = iframe.locator('xpath=//taro-button-core')
         if checkinButton.text_content()=='已签到':
             print('\n今日已签到,无需再签到!')
         else:

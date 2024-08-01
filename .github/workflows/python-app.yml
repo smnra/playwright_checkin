@@ -2,7 +2,7 @@ name: 欢乐战三国 签到
 
 on:
   schedule:
-    - cron: '30 0,10 * * *'
+    - cron: '30 10 7 * *'
   push:
     branches: [ "main" ]
     paths:
